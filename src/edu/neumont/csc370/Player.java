@@ -16,7 +16,13 @@ public abstract class Player {
     }
 
     public abstract double getBet();
-    public abstract void setWinnings(double winnings);
-    public abstract double getMoney();
 
+    public void setWinnings(double winnings) {
+        money += winnings;
+
+    }
+
+    public double getMoney() {
+        return money;
+    }
 }
