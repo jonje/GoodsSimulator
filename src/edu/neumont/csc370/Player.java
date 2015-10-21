@@ -6,8 +6,6 @@ package edu.neumont.csc370;
 public abstract class Player {
 
     private double money;
-    private double minBid;
-    private double maxBid;
     private double multiplier;
 
     public Player(double money, double multiplier) {
