@@ -9,3 +9,14 @@ out/*
 *.iml
 .idea/*
 *.iws
+
+### Scala ###
+*.class
+*.log
+
+# sbt specific
+.cache
+.history
+.lib/
+dist/*
+target/
