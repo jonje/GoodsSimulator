@@ -3,11 +3,12 @@ package edu.neumont.csc370.model
 /**
  * Created by stephen on 10/22/15.
  */
-class BigSpender(money : Double) : Player(money) {
+class BigSpender(money : Double) : Player(money, 1.0) {
 
     override fun getBet() : Double {
-        val ret = this.money
-        money = 0.0
-        return ret
+        val playerBet = this.money * this.bettingRatio
+        println("BigSpender betting $playerBet")
+        money -= playerBet
+        return playerBet
     }
 }

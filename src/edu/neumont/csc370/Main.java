@@ -7,13 +7,20 @@ import edu.neumont.csc370.simulation.PhaseOneSimulation;
 import java.util.List;
 
 /**
+ * Modified my sfox on 10/22/15
  * Created by jjensen on 10/21/15.
  */
 public class Main {
     public static void main(String[] args) {
 
-        List<Player> playersForPhase = PlayerFactory.INSTANCE.getPlayersForPhase("phase 1");
+        List<List<? extends Player>> playersForPhase
+                = PlayerFactory.INSTANCE.getPlayersForPhase("phase 1", 20.00);
 
-        new PhaseOneSimulation().runWithPlayerPool(playersForPhase);
+        PhaseOneSimulation phaseOneSimulation = new PhaseOneSimulation();
+        for ( List<? extends Player> players : playersForPhase ) {
+            System.out.println("\n|||||||||| Spacer ||||||||||\n");
+            phaseOneSimulation.runWithPlayerPool(players);
+        }
+
     }
 }

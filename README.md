@@ -4,6 +4,7 @@ Goods Simulator group project for class.
 The goal of this project is to simulate the Public Goods Game. The basic structure of the Public Goods game is that players are given the same flat amount of resources. They secretly put in however much or however little they want into a central pot. After everyone has decided on what they want to do, the pot is multiplied by a set amount and then equally redistributed amongst everyone, regardless of the quantity they put in initially.
 
 This will be done in three separate phases with one optional, stretch goal phase. 
+- When implementing you should be sure that the amount each “personality” puts in a game valid amount (from nothing to everything they have)
 
 ### Phase 1:
 - One round
@@ -16,7 +17,7 @@ This will be done in three separate phases with one optional, stretch goal phase
     - The Big Spender: Always goes all in
     - The Middle Man: Always puts in half
   - Note: These will not be the only personalities.
-  - When implementing you should be sure that the amount each “personality” puts in can be anything from nothing to all in.
+
 Run the simulation on all combinations of these three personalities on three actors.
 
 ##### Main Question:

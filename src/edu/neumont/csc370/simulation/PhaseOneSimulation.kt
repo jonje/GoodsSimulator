@@ -15,10 +15,13 @@ class PhaseOneSimulation : Simulation(multiplier = 2.0) {
         moneyPot += gamePlayers.map { it.bet }.sum()
 
         // payout
+        println("Pot at $moneyPot, multiplying by $multiplier")
         moneyPot *= 2
+        println("Multiplied pot = $moneyPot")
         gamePlayers.forEach { it.earnWinnings(moneyPot / gamePlayers.size) }
 
         println("\n--------- Stats ---------")
         gamePlayers.forEach { println("Player $it") }
+        moneyPot = 0.0
     }
 }
