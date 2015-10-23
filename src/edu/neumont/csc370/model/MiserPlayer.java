@@ -1,8 +1,7 @@
-package edu.neumont.csc370;
-
-import javax.swing.plaf.metal.MetalBorders;
+package edu.neumont.csc370.model;
 
 /**
+ * Keep skates never payout
  * Created by jjensen on 10/21/15.
  */
 public class MiserPlayer extends Player {
