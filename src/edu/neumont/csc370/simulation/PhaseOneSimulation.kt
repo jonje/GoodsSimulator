@@ -7,16 +7,16 @@ import edu.neumont.csc370.model.Player
  */
 class PhaseOneSimulation : Simulation(multiplier = 2.0) {
     var moneyPot = 0.0
+    val minBet = 0.0
 
     override fun runWithPlayerPool(gamePlayers : List<Player>) {
-//        val idToPlayers = gamePlayers.toMap({ it.id}, {it})
 
         // get everyone's bet
-        moneyPot += gamePlayers.map { it.bet }.sum()
+        moneyPot += gamePlayers.map { it.getBet(minBet, multiplier) }.sum()
 
         // payout
         println("Pot at $moneyPot, multiplying by $multiplier")
-        moneyPot *= 2
+        moneyPot *= multiplier
         println("Multiplied pot = $moneyPot")
         gamePlayers.forEach { it.earnWinnings(moneyPot / gamePlayers.size) }
 

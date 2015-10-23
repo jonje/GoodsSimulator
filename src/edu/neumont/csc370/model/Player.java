@@ -16,7 +16,7 @@ public abstract class Player {
         this.id = _id++;
     }
 
-    public abstract double getBet();
+    public abstract double getBet(double minimumBet, double multiplier);
 
     public void earnWinnings(double winnings) {
         System.out.println(String.format("%s just earned %f", this, winnings));

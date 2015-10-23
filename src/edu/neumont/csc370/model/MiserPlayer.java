@@ -11,7 +11,7 @@ public class MiserPlayer extends Player {
     }
 
     @Override
-    public double getBet() {
+    public double getBet( double minimumBet, double multiplier ) {
         System.out.println("Miser betting nothing");
         return 0;
     }

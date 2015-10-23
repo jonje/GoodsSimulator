@@ -6,7 +6,7 @@ package edu.neumont.csc370.model
  */
 class MiddleMan(money : Double) : Player(money, 0.5) {
 
-    override fun getBet() : kotlin.Double {
+    override fun getBet(minimumBet : Double, multiplier : Double) : Double {
         val ret = money * this.bettingRatio
         println("MiddleMan betting $ret")
         this.money *= this.bettingRatio
