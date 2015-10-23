@@ -10,6 +10,9 @@ out/*
 .idea/*
 *.iws
 
+## Mac ##
+.DS_Store
+
 ### Scala ###
 *.class
 *.log
