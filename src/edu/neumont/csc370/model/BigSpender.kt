@@ -3,7 +3,7 @@ package edu.neumont.csc370.model
 /**
  * Created by stephen on 10/22/15.
  */
-class BigSpender(money : Double, multiplier : Double) : Player(money, multiplier) {
+class BigSpender(money : Double) : Player(money) {
 
     override fun getBet() : Double {
         val ret = this.money

@@ -9,9 +9,16 @@ class PhaseOneSimulation : Simulation(multiplier = 2.0) {
     var moneyPot = 0.0
 
     override fun runWithPlayerPool(gamePlayers : List<Player>) {
-        // TODO get each player's bet
-        val idToBetMap = gamePlayers.toMap({ it.id}, {it.bet})
+//        val idToPlayers = gamePlayers.toMap({ it.id}, {it})
+
+        // get everyone's bet
+        moneyPot += gamePlayers.map { it.bet }.sum()
 
         // payout
+        moneyPot *= 2
+        gamePlayers.forEach { it.earnWinnings(moneyPot / gamePlayers.size) }
+
+        println("\n--------- Stats ---------")
+        gamePlayers.forEach { println("Player $it") }
     }
 }

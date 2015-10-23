@@ -15,11 +15,9 @@ object PlayerFactory {
     private fun genPhaseOnePlayers() : List<Player> {
         // FIXME: this should be a list of sets, to get every combination
 
-        val multiplier = 1.0 // scratch: should the multiplier be injected?
-
-        val lowbie = MiserPlayer(10.00, multiplier)
-        val middie = MiddleMan(10.00, multiplier)
-        val biggie = BigSpender(10.00, multiplier)
+        val lowbie = MiserPlayer(10.00)
+        val middie = MiddleMan(10.00)
+        val biggie = BigSpender(10.00)
 
         return listOf(lowbie, middie, biggie)
     }

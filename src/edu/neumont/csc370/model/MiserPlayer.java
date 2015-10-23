@@ -6,8 +6,8 @@ package edu.neumont.csc370.model;
  */
 public class MiserPlayer extends Player {
 
-    public MiserPlayer(double money, double multiplier) {
-        super(money, multiplier);
+    public MiserPlayer(double money) {
+        super(money);
     }
 
     @Override

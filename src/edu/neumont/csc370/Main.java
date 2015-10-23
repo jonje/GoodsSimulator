@@ -2,6 +2,7 @@ package edu.neumont.csc370;
 
 import edu.neumont.csc370.model.Player;
 import edu.neumont.csc370.model.PlayerFactory;
+import edu.neumont.csc370.simulation.PhaseOneSimulation;
 
 import java.util.List;
 
@@ -13,8 +14,6 @@ public class Main {
 
         List<Player> playersForPhase = PlayerFactory.INSTANCE.getPlayersForPhase("phase 1");
 
-        for ( Player aPlayer : playersForPhase ) {
-            System.out.println(aPlayer);
-        }
+        new PhaseOneSimulation().runWithPlayerPool(playersForPhase);
     }
 }

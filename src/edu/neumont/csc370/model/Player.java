@@ -7,27 +7,22 @@ public abstract class Player {
 
     private static int _id = 0;
     private double money;
-    private double multiplier;
     private int id;
 
-    public Player(double money, double multiplier) {
+    public Player(double money) {
         this.money = money;
-        this.multiplier = multiplier;
         this.id = _id++;
     }
 
     public abstract double getBet();
 
     public void earnWinnings(double winnings) {
+        System.out.println(String.format("%s just earned %f", this, winnings));
         money += winnings;
     }
 
     public int getId() {
         return id;
-    }
-
-    public double getMultiplier() {
-        return multiplier;
     }
 
     public double getMoney() {
@@ -39,7 +34,7 @@ public abstract class Player {
 
     @Override
     public String toString() {
-        return String.format("%s, $%f x %f",
-                this.getClass().getSimpleName(), this.getMoney(), this.getMultiplier());
+        return String.format("%s, $%f",
+                this.getClass().getSimpleName(), this.getMoney());
     }
 }
