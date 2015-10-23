@@ -7,11 +7,12 @@ package edu.neumont.csc370.model;
 public class MiserPlayer extends Player {
 
     public MiserPlayer(double money) {
-        super(money);
+        super(money, 0);
     }
 
     @Override
     public double getBet() {
+        System.out.println("Miser betting nothing");
         return 0;
     }
 
