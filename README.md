@@ -26,6 +26,11 @@ Run the simulation on all combinations of these three personalities on three act
 
 <em>Answer 1</em>:
 
+[Stephen says]:
+- The MiserPlayer comes out on top.
+Having nothing in the game, they can only profit.
+- The BigSpender (who risks the most) only makes an exact return on investment,
+never a profit
 
 ### Phase 2:
 	The simulation grows yet more complex.
