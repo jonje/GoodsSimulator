@@ -3,6 +3,8 @@ package edu.neumont.csc370;
 import edu.neumont.csc370.model.Player;
 import edu.neumont.csc370.model.PlayerFactory;
 import edu.neumont.csc370.simulation.PhaseOneSimulation;
+import edu.neumont.csc370.simulation.PhaseTwoSimulation;
+import edu.neumont.csc370.simulation.SimulationBundledConfiguration;
 
 import java.util.List;
 
@@ -13,14 +15,26 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+        phaseOneTrials();
+
+        List<List<? extends Player>> playersForPhaseTwo = PlayerFactory.INSTANCE.getPlayersForPhase("phase 2", 40.00);
+
+        SimulationBundledConfiguration configuration = new
+                SimulationBundledConfiguration(playersForPhaseTwo.get(0), 2.00, 0, .20, 5.00);
+
+        PhaseTwoSimulation phaseTwoSimulation = new PhaseTwoSimulation(configuration);
+
+    }
+
+    private static void phaseOneTrials() {
         List<List<? extends Player>> playersForPhase
                 = PlayerFactory.INSTANCE.getPlayersForPhase("phase 1", 20.00);
 
-        PhaseOneSimulation phaseOneSimulation = new PhaseOneSimulation();
+        PhaseOneSimulation phaseOneSimulation;
         for ( List<? extends Player> players : playersForPhase ) {
+            phaseOneSimulation = new PhaseOneSimulation(players);
             System.out.println("\n|||||||||| Spacer ||||||||||\n");
-            phaseOneSimulation.runWithPlayerPool(players);
+            phaseOneSimulation.run();
         }
-
     }
 }

@@ -7,7 +7,7 @@ public abstract class Player {
 
     private static int _id = 0;
     private double money;
-    private final double bettingRatio;
+    private double bettingRatio;
     private int id;
 
     public Player(double money, double bettingRatio) {
@@ -28,6 +28,10 @@ public abstract class Player {
     }
 
     public double getBettingRatio() { return bettingRatio; }
+
+    public void setBettingRatio( double bettingRatio ) {
+        this.bettingRatio = bettingRatio;
+    }
 
     public double getMoney() {
         return money;
