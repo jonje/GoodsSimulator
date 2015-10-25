@@ -7,8 +7,11 @@ class BigSpender(money : Double) : Player(money, 1.0) {
 
     override fun getBet(minimumBet : Double, multiplier : Double) : Double {
         val playerBet = this.money * this.bettingRatio
-        println("BigSpender betting $playerBet")
-        money -= playerBet
-        return playerBet
+        if (playerBet >= minimumBet) {
+            println("BigSpender betting $playerBet")
+            this.money -= playerBet
+            return playerBet
+        }
+        return 0.0
     }
 }

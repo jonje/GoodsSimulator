@@ -7,7 +7,7 @@ object PlayerFactory {
 
     fun getPlayersForPhase(difficulty : String, startingAmount : Double) : List<List<Player>> = when(difficulty) {
         "phase 1" -> genPhaseOnePlayers(startingAmount)
-//        "phase 2" -> genPhaseTwoPlayers(startingAmount)
+        "phase 2" -> genPhaseTwoPlayers(startingAmount)
 //        "phase 3" -> genPhaseThreePlayers(startingAmount)
         else -> listOf<List<Player>>()
     }
@@ -36,4 +36,11 @@ object PlayerFactory {
         return listOf(lowbie, middie, biggie)
     }
 
+    private fun genPhaseTwoPlayers(startingAmount : Double) : List<List<Player>> {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    fun getPhaseTwoPlaers(startingPurse : Double) : List<Player> {
+        return getPlayersForPhase("phase two", startingPurse).flatten()
+    }
 }
