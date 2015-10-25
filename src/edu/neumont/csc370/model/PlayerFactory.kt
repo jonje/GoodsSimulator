@@ -37,7 +37,13 @@ object PlayerFactory {
     }
 
     private fun genPhaseTwoPlayers(startingAmount : Double) : List<List<Player>> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val startingBidRatio = 0.25;
+
+        val players1 = listOf(BigSpender(startingAmount),
+                MiddleMan(startingAmount), MiddleMan(startingAmount), AdaptivePlayer(startingAmount, startingBidRatio),
+                AdaptivePlayer(startingAmount, startingBidRatio))
+
+        return listOf(players1)
     }
 
     fun getPhaseTwoPlayers(startingPurse : Double) : List<Player> {

@@ -4,7 +4,6 @@ package edu.neumont.csc370.model;
  * Created by gh255013 on 10/24/15.
  */
 public class AdaptivePlayer extends Player{
-    private static final double START_BET_MULTIPLIER = .25;
     private double betLastRound;
     private double winningsLastRound;
     private double currentBet;
@@ -13,7 +12,7 @@ public class AdaptivePlayer extends Player{
         super(money, bettingRatio);
         winningsLastRound = 0;
         betLastRound = 0;
-        currentBet = money * START_BET_MULTIPLIER;
+        currentBet = money * this.getBettingRatio();
     }
 
     @Override
@@ -35,6 +34,7 @@ public class AdaptivePlayer extends Player{
             currentBet = 0;
 
         this.setMoney(this.getMoney() - currentBet);
+        System.out.println("AdaptivePlayer betting " + currentBet);
         return currentBet;
     }
 
