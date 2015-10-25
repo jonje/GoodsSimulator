@@ -36,7 +36,7 @@ class PhaseTwoSimulation(val configuration : SimulationBundledConfiguration)
         for ((player, bet) in playerBetPairs) {
             player.earnWinnings(bet * configuration.percentageReward)
             player.earnWinnings(lotteryPot / playersToBets)
-            
+
             if (bet > biggestContribution.second)
                 biggestContribution = Pair(player, bet)
         }
