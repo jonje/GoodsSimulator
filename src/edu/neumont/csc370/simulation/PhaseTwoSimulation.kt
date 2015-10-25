@@ -26,19 +26,21 @@ class PhaseTwoSimulation(val configuration : SimulationBundledConfiguration)
             }
         }
 
-        val lotteryPot = moneyPot * this.multiplier
+        this.payOut(playerBetPairs, playersToBets.size)
+    }
 
-        var biggestPlayer : Pair<Player, Double> = playerBetPairs.first()
+    private fun payOut(playerBetPairs : ArrayList<Pair<Player, Double>>, playersToBets : Int) : Unit {
+        val lotteryPot = moneyPot * this.multiplier
+        var biggestContribution : Pair<Player, Double> = playerBetPairs.first()
 
         for ((player, bet) in playerBetPairs) {
             player.earnWinnings(bet * configuration.percentageReward)
-            player.earnWinnings(lotteryPot / playersToBets.size)
-            if (bet > biggestPlayer.second)
-            {
-                biggestPlayer = Pair(player, bet)
-            }
+            player.earnWinnings(lotteryPot / playersToBets)
+            
+            if (bet > biggestContribution.second)
+                biggestContribution = Pair(player, bet)
         }
 
-        biggestPlayer.first.earnWinnings(configuration.flatReward)
+        biggestContribution.first.earnWinnings(configuration.flatReward)
     }
 }
