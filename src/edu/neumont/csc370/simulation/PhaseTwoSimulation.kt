@@ -1,12 +1,44 @@
 package edu.neumont.csc370.simulation
 
+import edu.neumont.csc370.model.Player
+import java.util.*
+
 /**
  * Created by stephen on 10/23/15.
  */
 class PhaseTwoSimulation(val configuration : SimulationBundledConfiguration)
     : Simulation(configuration.players, configuration.multiplier) {
 
+    var moneyPot = 0.0
+
     override fun run() {
-        // TODO: run the gae with the configuration flag checks throughout
+        // check the minimum that everyone is putting in, and make a new list
+        // containing the qualified. Accumulate the money pot at the same time
+//        val activePlayers : ArrayList<Player> = ArrayList()
+        val playersToBets : HashMap<Player, Double> = HashMap()
+        val playerBetPairs : ArrayList<Pair<Player, Double>> = ArrayList()
+        for (player in configuration.players) {
+            val currentBet = player.getBet(configuration.minimumEntry, this.multiplier)
+
+            if ( currentBet > configuration.minimumEntry) {
+                moneyPot += currentBet
+                playerBetPairs.add(Pair(player, currentBet))
+            }
+        }
+
+        val lotteryPot = moneyPot * this.multiplier
+
+        var biggestPlayer : Pair<Player, Double> = playerBetPairs.first()
+
+        for ((player, bet) in playerBetPairs) {
+            player.earnWinnings(bet * configuration.percentageReward)
+            player.earnWinnings(lotteryPot / playersToBets.size)
+            if (bet > biggestPlayer.second)
+            {
+                biggestPlayer = Pair(player, bet)
+            }
+        }
+
+        biggestPlayer.first.earnWinnings(configuration.flatReward)
     }
 }
