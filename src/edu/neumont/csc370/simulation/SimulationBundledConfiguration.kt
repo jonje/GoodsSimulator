@@ -11,4 +11,9 @@ class SimulationBundledConfiguration(
         val numOfIterations : Int = 1,
         val flatReward : Double = 0.0,
         val percentageReward : Double = 0.0,
-        val minimumEntry : Double = 0.0 )
+        val minimumEntry : Double = 0.0 ) {
+
+    companion object Factory {
+        // different than Scala in this regard
+    }
+}

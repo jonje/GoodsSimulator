@@ -1,14 +1,10 @@
 package edu.neumont.csc370.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by gh255013 on 10/24/15.
  */
 public class AdaptivePlayer extends Player{
     private static final double START_BET_MULTIPLIER = .25;
-    private double currentMultiplier;
     private double betLastRound;
     private double winningsLastRound;
     private double currentBet;
@@ -31,7 +27,7 @@ public class AdaptivePlayer extends Player{
         this.addPercentageToMultiplier(percentageChange);
 
         //Decide on bet
-        currentBet = this.getMoney() * currentMultiplier;
+        currentBet = this.getMoney() * getBettingRatio();
         if(currentBet < minimumBet)
             currentBet = minimumBet;
 
@@ -49,13 +45,13 @@ public class AdaptivePlayer extends Player{
     }
 
     private void addPercentageToMultiplier(double percentageChange) {
-        if((currentMultiplier + percentageChange) > 1.00) {
-            currentMultiplier = 1;
+        if((getBettingRatio() + percentageChange) > 1.00) {
+            setBettingRatio(1.00);
 
-        } else if((currentMultiplier + percentageChange) < 0.00) {
-            currentMultiplier = 0;
+        } else if((getBettingRatio() + percentageChange) < 0.00) {
+            setBettingRatio(0.00);
         } else {
-            currentMultiplier += percentageChange;
+            setBettingRatio(getBettingRatio() + percentageChange);
         }
     }
 }
