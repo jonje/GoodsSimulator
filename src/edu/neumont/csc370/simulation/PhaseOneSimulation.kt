@@ -1,5 +1,6 @@
 package edu.neumont.csc370.simulation
 
+import edu.neumont.csc370.LOG
 import edu.neumont.csc370.model.Player
 /**
  * Created by stephen on 10/23/15.
@@ -19,13 +20,13 @@ class PhaseOneSimulation(val players : List<Player>) : Simulation(players,  mult
         moneyPot += gamePlayers.map { it.getBet(minBet, multiplier) }.sum()
 
         // payout
-        println("Pot at $moneyPot, multiplying by $multiplier")
+        LOG.printSimLevel("Pot at $moneyPot, multiplying by $multiplier")
         moneyPot *= multiplier
-        println("Multiplied pot = $moneyPot")
+        LOG.printSimLevel("Multiplied pot = $moneyPot")
         gamePlayers.forEach { it.earnWinnings(moneyPot / gamePlayers.size) }
 
-        println("\n--------- Stats ---------")
-        gamePlayers.forEach { println("Player $it") }
+        LOG.printSimLevel("\n--------- Stats ---------")
+        gamePlayers.forEach { LOG.printSimLevel("Player $it") }
         moneyPot = 0.0
     }
 }

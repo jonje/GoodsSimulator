@@ -15,15 +15,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        phaseOneTrials();
-
-        List<? extends Player> playersForPhaseTwo =
-                PlayerFactory.INSTANCE.getPhaseTwoPlayers(40.00);
-
-        SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo, 2.00, 1, 0, .20, 5.00, 0.00);
-
-        PhaseTwoSimulation phaseTwoSimulation = new PhaseTwoSimulation(configuration);
-
+//        phaseOneTrials();
+        phaseTwoTrials();
     }
 
     private static void phaseOneTrials() {
@@ -36,5 +29,17 @@ public class Main {
             System.out.println("\n|||||||||| Spacer ||||||||||\n");
             phaseOneSimulation.run();
         }
+    }
+
+    private static void phaseTwoTrials() {
+        List<? extends Player> playersForPhaseTwo =
+                PlayerFactory.INSTANCE.getPlayersForPhase("phase 2", 40.00).get(0);
+
+        SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo, 2.00, 1, 0, .20, 5.00, 0.00);
+        PhaseTwoSimulation phaseTwoSimulation = new PhaseTwoSimulation(configuration);
+
+        LOG.printMainLevel("Start Simulation");
+        phaseTwoSimulation.run();
+        LOG.printMainLevel("End Simulation");
     }
 }

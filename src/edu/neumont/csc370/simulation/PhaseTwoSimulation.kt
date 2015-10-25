@@ -1,5 +1,6 @@
 package edu.neumont.csc370.simulation
 
+import edu.neumont.csc370.LOG
 import edu.neumont.csc370.model.Player
 import java.util.*
 
@@ -14,6 +15,7 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
     override fun run() {
         // check the minimum that everyone is putting in, and make a new list
         // containing the qualified. Accumulate the money pot at the same time
+        LOG.printSimLevel("New sim round")
 
         val playerBetPairs : ArrayList<Pair<Player, Double>> = ArrayList()
         for (player in configuration.players) {
@@ -30,16 +32,55 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
 
     private fun payOut(playerBetPairs : ArrayList<Pair<Player, Double>>) : Unit {
         val lotteryPot = moneyPot * this.multiplier
-        var highestContributor : Pair<Player, Double> = playerBetPairs.first()
+        LOG.printSimLevel("Lottery pot is: " + lotteryPot)
+        LOG.printSimLevel("Paying out to players...")
+
+        //I did the payout this way deliberately
+        //Pros: The print output makes more sense
+        //Cons: We loop through the playerBetPairs twice, and payPercentageRewards is doing two things (payout out + returning highestContributor)
+        val highestContributor = this.payPercentageRewards(playerBetPairs)
+        this.payDistribution(playerBetPairs)
+
+        LOG.printSimLevel("Paying out flat reward to highest contribution (" + highestContributor + ")")
+        highestContributor.earnWinnings(configuration.flatReward)
+    }
+
+    //Pays out percentage rewards AND returns highest contributor. This is so that more loops over the player bet pairs
+    //are not necessary
+    private fun payPercentageRewards(playerBetPairs: ArrayList<Pair<Player, Double>>) : Player {
+        LOG.printSimLevel("Paying out percentage rewards")
+        var highestContribution : Pair<Player, Double> = playerBetPairs.first()
+
+        for ((player, bet) in playerBetPairs) {
+            player.earnWinnings(bet * configuration.percentageReward)
+
+            if (bet > highestContribution.second)
+                highestContribution = Pair(player, bet)
+        }
+
+        return highestContribution.first;
+    }
+
+    private fun payDistribution(playerBetPairs: ArrayList<Pair<Player, Double>>) : Unit {
+        LOG.printSimLevel("Paying out equal shares of the pot")
+        val lotteryPot = moneyPot * this.multiplier
+        for ((player, bet) in playerBetPairs) {
+            player.earnWinnings(lotteryPot / playerBetPairs.size - configuration.depreciationLevel)
+        }
+    }
+
+    private fun payOutInSingleLoop(playerBetPairs: ArrayList<Pair<Player, Double>>): Player {
+        val lotteryPot = moneyPot * this.multiplier
+        var highestContribution : Pair<Player, Double> = playerBetPairs.first()
 
         for ((player, bet) in playerBetPairs) {
             player.earnWinnings(bet * configuration.percentageReward)
             player.earnWinnings(lotteryPot / playerBetPairs.size - configuration.depreciationLevel)
-            
-            if (bet > highestContributor.second)
-                highestContributor = Pair(player, bet)
+
+            if (bet > highestContribution.second)
+                highestContribution = Pair(player, bet)
         }
 
-        highestContributor.first.earnWinnings(configuration.flatReward)
+        return highestContribution.first;
     }
 }

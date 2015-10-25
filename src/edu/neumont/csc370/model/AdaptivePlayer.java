@@ -1,5 +1,7 @@
 package edu.neumont.csc370.model;
 
+import edu.neumont.csc370.LOG;
+
 /**
  * Created by gh255013 on 10/24/15.
  */
@@ -34,13 +36,13 @@ public class AdaptivePlayer extends Player{
             currentBet = 0;
 
         this.setMoney(this.getMoney() - currentBet);
-        System.out.println("AdaptivePlayer betting " + currentBet);
+        LOG.printPlayerLevel("AdaptivePlayer betting " + currentBet);
         return currentBet;
     }
 
     @Override
     public void earnWinnings(double winnings) {
-        System.out.println(String.format("%s just earned %f", this, winnings));
+        LOG.printPlayerLevel(String.format("%s just earned %.2f", this, winnings));
         this.setMoney(this.getMoney() + winnings);
     }
 

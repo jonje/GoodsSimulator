@@ -1,5 +1,7 @@
 package edu.neumont.csc370.model
 
+import edu.neumont.csc370.LOG
+
 /**
  * Created by stephen on 10/22/15.
  */
@@ -9,7 +11,7 @@ class BigSpender(money : Double) : Player(money, 1.0) {
         var ret = money * this.bettingRatio
         if(ret < minimumBet)
             ret = 0.0
-        println("BigSpender betting $ret")
+        LOG.printPlayerLevel("BigSpender betting $ret")
         this.money -= ret
         return ret
     }
