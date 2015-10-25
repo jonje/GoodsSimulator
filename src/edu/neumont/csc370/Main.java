@@ -17,10 +17,11 @@ public class Main {
 
         phaseOneTrials();
 
-        List<List<? extends Player>> playersForPhaseTwo = PlayerFactory.INSTANCE.getPlayersForPhase("phase 2", 40.00);
+        List<? extends Player> playersForPhaseTwo =
+                PlayerFactory.INSTANCE.getPhaseTwoPlayers(40.00);
 
         SimulationBundledConfiguration configuration = new
-                SimulationBundledConfiguration(playersForPhaseTwo.get(0), 2.00, 0, .20, 5.00);
+                SimulationBundledConfiguration(playersForPhaseTwo, 2.00, 1, 0, .20, 5.00);
 
         PhaseTwoSimulation phaseTwoSimulation = new PhaseTwoSimulation(configuration);
 

@@ -14,8 +14,7 @@ class PhaseTwoSimulation(val configuration : SimulationBundledConfiguration)
     override fun run() {
         // check the minimum that everyone is putting in, and make a new list
         // containing the qualified. Accumulate the money pot at the same time
-//        val activePlayers : ArrayList<Player> = ArrayList()
-        val playersToBets : HashMap<Player, Double> = HashMap()
+
         val playerBetPairs : ArrayList<Pair<Player, Double>> = ArrayList()
         for (player in configuration.players) {
             val currentBet = player.getBet(configuration.minimumEntry, this.multiplier)
@@ -26,16 +25,16 @@ class PhaseTwoSimulation(val configuration : SimulationBundledConfiguration)
             }
         }
 
-        this.payOut(playerBetPairs, playersToBets.size)
+        this.payOut(playerBetPairs)
     }
 
-    private fun payOut(playerBetPairs : ArrayList<Pair<Player, Double>>, playersToBets : Int) : Unit {
+    private fun payOut(playerBetPairs : ArrayList<Pair<Player, Double>>) : Unit {
         val lotteryPot = moneyPot * this.multiplier
         var biggestContribution : Pair<Player, Double> = playerBetPairs.first()
 
         for ((player, bet) in playerBetPairs) {
             player.earnWinnings(bet * configuration.percentageReward)
-            player.earnWinnings(lotteryPot / playersToBets)
+            player.earnWinnings(lotteryPot / playerBetPairs.size)
             
             if (bet > biggestContribution.second)
                 biggestContribution = Pair(player, bet)
