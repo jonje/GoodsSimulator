@@ -8,9 +8,7 @@ import edu.neumont.csc370.model.Player
 class SimulationBundledConfiguration(
         var players : List<Player>,
         val multiplier : Double,
-        val numOfIterations : Int,
+        val numOfIterations : Int = 1,
         val flatReward : Double = 0.0,
         val percentageReward : Double = 0.0,
-        val minimumEntry : Double = 0.0 ) {
-
-}
+        val minimumEntry : Double = 0.0 )

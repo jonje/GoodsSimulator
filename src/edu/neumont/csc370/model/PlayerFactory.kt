@@ -40,7 +40,7 @@ object PlayerFactory {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun getPhaseTwoPlaers(startingPurse : Double) : List<Player> {
-        return getPlayersForPhase("phase two", startingPurse).flatten()
+    fun getPhaseTwoPlayers(startingPurse : Double) : List<Player> {
+        return listOf(MiserPlayer(startingPurse), MiddleMan(startingPurse), BigSpender(startingPurse))
     }
 }
