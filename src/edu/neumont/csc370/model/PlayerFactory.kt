@@ -40,7 +40,7 @@ object PlayerFactory {
         val startingBidRatio = 0.25;
 
         val players1 = listOf(BigSpender(startingAmount),
-                MiddleMan(startingAmount), MiddleMan(startingAmount), AdaptivePlayer(startingAmount, startingBidRatio),
+                MiserPlayer(startingAmount), MiddleMan(startingAmount), AdaptivePlayer(startingAmount, startingBidRatio),
                 AdaptivePlayer(startingAmount, startingBidRatio))
 
         return listOf(players1)

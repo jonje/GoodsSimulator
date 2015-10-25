@@ -9,12 +9,11 @@ import java.util.*
  */
 class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
     : Simulation(configuration.players, configuration.multiplier) {
-
     var moneyPot = 0.0
 
     override fun run() {
-        // check the minimum that everyone is putting in, and make a new list
-        // containing the qualified. Accumulate the money pot at the same time
+        configuration.print()
+        LOG.printSimLevel("")
         LOG.printSimLevel("New sim round")
 
         val playerBetPairs : ArrayList<Pair<Player, Double>> = ArrayList()
@@ -28,6 +27,9 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
         }
 
         this.payOut(playerBetPairs)
+
+        LOG.printSimLevel("End of round")
+        this.printPlayers()
     }
 
     private fun payOut(playerBetPairs : ArrayList<Pair<Player, Double>>) : Unit {
@@ -82,5 +84,11 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
         }
 
         return highestContribution.first;
+    }
+
+    private fun printPlayers() : Unit {
+        for(player in configuration.players) {
+            LOG.printPlayerLevel(player.toString())
+        }
     }
 }

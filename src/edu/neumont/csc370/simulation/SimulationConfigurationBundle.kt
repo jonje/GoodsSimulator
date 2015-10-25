@@ -1,5 +1,6 @@
 package edu.neumont.csc370.simulation
 
+import edu.neumont.csc370.LOG
 import edu.neumont.csc370.model.Player
 import edu.neumont.csc370.model.PlayerFactory
 import java.util.*
@@ -58,5 +59,23 @@ class SimulationConfigurationBundle(
             }
 
         }
+    }
+
+    public fun print() : Unit {
+        LOG.printSimLevel("SIMULATION CONFIG")
+        LOG.printSimLevel("Players:")
+
+        for(player in players) {
+            LOG.printPlayerLevel("\t" + player)
+        }
+
+        LOG.printSimLevel("Pot Multiplier: " + multiplier)
+        LOG.printSimLevel("Number of Iterations: " + numOfIterations)
+        LOG.printSimLevel("Flat Reward: " + flatReward)
+        LOG.printSimLevel("Percentage Reward: " + percentageReward)
+        LOG.printSimLevel("Minimum Entry: " + minimumEntry)
+        LOG.printSimLevel("Depreciation each turn: " + depreciationLevel)
+
+        LOG.printSimLevel("END CONFIG")
     }
 }
