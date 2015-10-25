@@ -4,7 +4,7 @@ import edu.neumont.csc370.model.Player;
 import edu.neumont.csc370.model.PlayerFactory;
 import edu.neumont.csc370.simulation.PhaseOneSimulation;
 import edu.neumont.csc370.simulation.PhaseTwoSimulation;
-import edu.neumont.csc370.simulation.SimulationBundledConfiguration;
+import edu.neumont.csc370.simulation.SimulationConfigurationBundle;
 
 import java.util.List;
 
@@ -20,8 +20,7 @@ public class Main {
         List<? extends Player> playersForPhaseTwo =
                 PlayerFactory.INSTANCE.getPhaseTwoPlayers(40.00);
 
-        SimulationBundledConfiguration configuration = new
-                SimulationBundledConfiguration(playersForPhaseTwo, 2.00, 1, 0, .20, 5.00);
+        SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo, 2.00, 1, 0, .20, 5.00, 0.00);
 
         PhaseTwoSimulation phaseTwoSimulation = new PhaseTwoSimulation(configuration);
 

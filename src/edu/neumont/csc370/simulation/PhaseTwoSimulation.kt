@@ -6,7 +6,7 @@ import java.util.*
 /**
  * Created by stephen on 10/23/15.
  */
-class PhaseTwoSimulation(val configuration : SimulationBundledConfiguration)
+class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
     : Simulation(configuration.players, configuration.multiplier) {
 
     var moneyPot = 0.0
@@ -34,7 +34,7 @@ class PhaseTwoSimulation(val configuration : SimulationBundledConfiguration)
 
         for ((player, bet) in playerBetPairs) {
             player.earnWinnings(bet * configuration.percentageReward)
-            player.earnWinnings(lotteryPot / playerBetPairs.size)
+            player.earnWinnings(lotteryPot / playerBetPairs.size - configuration.depreciationLevel)
             
             if (bet > highestContributor.second)
                 highestContributor = Pair(player, bet)
