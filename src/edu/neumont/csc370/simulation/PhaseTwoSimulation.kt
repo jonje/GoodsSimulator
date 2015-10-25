@@ -20,7 +20,7 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
         for (player in configuration.players) {
             val currentBet = player.getBet(configuration.minimumEntry, this.multiplier)
 
-            if ( currentBet > configuration.minimumEntry) {
+            if ( currentBet >= configuration.minimumEntry) {
                 moneyPot += currentBet
                 playerBetPairs.add(Pair(player, currentBet))
             }
@@ -45,6 +45,8 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
 
         LOG.printSimLevel("Paying out flat reward to highest contribution (" + highestContributor + ")")
         highestContributor.earnWinnings(configuration.flatReward)
+
+        this.depreciatePlayers()
     }
 
     //Pays out percentage rewards AND returns highest contributor. This is so that more loops over the player bet pairs
@@ -67,7 +69,14 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
         LOG.printSimLevel("Paying out equal shares of the pot")
         val lotteryPot = moneyPot * this.multiplier
         for ((player, bet) in playerBetPairs) {
-            player.earnWinnings(lotteryPot / playerBetPairs.size - configuration.depreciationLevel)
+            player.earnWinnings(lotteryPot / playerBetPairs.size)
+        }
+    }
+
+    private fun depreciatePlayers() {
+        LOG.printSimLevel("Removing flat amount from players' total ")
+        for (player in configuration.players) {
+            player.reduceMoney(configuration.depreciationLevel)
         }
     }
 
@@ -77,7 +86,7 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
 
         for ((player, bet) in playerBetPairs) {
             player.earnWinnings(bet * configuration.percentageReward)
-            player.earnWinnings(lotteryPot / playerBetPairs.size - configuration.depreciationLevel)
+            player.earnWinnings(lotteryPot / playerBetPairs.size)
 
             if (bet > highestContribution.second)
                 highestContribution = Pair(player, bet)

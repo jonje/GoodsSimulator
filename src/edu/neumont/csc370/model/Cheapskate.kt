@@ -10,7 +10,7 @@ class Cheapskate(money : Double) : Player(money, 0.0) {
 
     override fun getBet(minimumBet : Double, multiplier : Double) : Double {
         var ret = minimumBet
-        if(ret < minimumBet)
+        if(ret > this.money)
             ret = 0.0
         LOG.printPlayerLevel("MiddleMan betting $ret")
         this.money -= ret

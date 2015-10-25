@@ -25,6 +25,11 @@ public abstract class Player {
         money += winnings;
     }
 
+    public void reduceMoney(double reduceAmount) {
+        LOG.printPlayerLevel(String.format("%s just lost %.2f", this, reduceAmount));
+        money -= reduceAmount;
+    }
+
     public int getId() {
         return id;
     }

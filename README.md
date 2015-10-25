@@ -63,6 +63,8 @@ Run the simulation over with more actors.
 
 <em>Answer 2</em>:
 
+- The Cheapksate (only places minimum entry) usually comes out on top
+The Miser does not do well because they are usually not included in the payout. The trend is still such that the less you pay the more likely you'll end up with the most money out of everyone with the Cheapskate always gaining the most as an individual. The exception to the case is when the percentage reward plus the flat reward (assuming you're the highest contributor) is greater than or equal to the max amount of money you can put into the pot as a player regardless of the depreciation (flat punishment) or pot multiplier
 
 ### Phase 3:
 	This phase implements several major changes

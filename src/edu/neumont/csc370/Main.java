@@ -35,9 +35,16 @@ public class Main {
         List<? extends Player> playersForPhaseTwo =
                 PlayerFactory.INSTANCE.getPlayersForPhase("phase 2", 40.00).get(0);
 
-        SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo, 2.00, 1, 0, .20, 5.00, 0.00);
-        PhaseTwoSimulation phaseTwoSimulation = new PhaseTwoSimulation(configuration);
+        double multiplier = 4.00;
+        int iterations = 1;
+        double flatReward = 0;
+        double percentageReward = .2;
+        double minimumEntry = 5;
+        double depreciationAmount = 20;
+        SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo,
+                multiplier, iterations, flatReward, percentageReward, minimumEntry, depreciationAmount);
 
+        PhaseTwoSimulation phaseTwoSimulation = new PhaseTwoSimulation(configuration);
         LOG.printMainLevel("Start Simulation");
         phaseTwoSimulation.run();
         LOG.printMainLevel("End Simulation");

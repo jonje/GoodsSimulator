@@ -1,5 +1,7 @@
 package edu.neumont.csc370.model
 
+import java.util.*
+
 /**
  * Created by stephen on 10/22/15.
  */
@@ -10,6 +12,10 @@ object PlayerFactory {
         "phase 2" -> genPhaseTwoPlayers(startingAmount)
 //        "phase 3" -> genPhaseThreePlayers(startingAmount)
         else -> listOf<List<Player>>()
+    }
+
+    fun getPhaseTwoPlayers(startingPurse : Double) : List<Player> {
+        return listOf(MiserPlayer(startingPurse), MiddleMan(startingPurse), BigSpender(startingPurse))
     }
 
     private fun genPhaseOnePlayers(startingAmount : Double) : List<List<Player>> {
@@ -36,17 +42,30 @@ object PlayerFactory {
         return listOf(lowbie, middie, biggie)
     }
 
-    private fun genPhaseTwoPlayers(startingAmount : Double) : List<List<Player>> {
-        val startingBidRatio = 0.25;
+    private fun genPhaseTwoPlayers(startingAmount : Double) : List<List<Player>>{
+        var playerTypes = listOf<String>();
+//        playerTypes += "miserplayer"
+//        playerTypes += "bigspender"
+//        playerTypes += "bigspender"
+        playerTypes += "cheapskate"
+        playerTypes += "bigspender"
+        playerTypes += "adaptiveplayer"
 
-        val players1 = listOf(BigSpender(startingAmount),
-                MiserPlayer(startingAmount), MiddleMan(startingAmount), AdaptivePlayer(startingAmount, startingBidRatio),
-                AdaptivePlayer(startingAmount, startingBidRatio))
+        var players = listOf<Player>()
+        for(playerString in playerTypes) {
+            players += this.getPlayer(playerString, startingAmount)
+        }
 
-        return listOf(players1)
+        return listOf(players)
     }
 
-    fun getPhaseTwoPlayers(startingPurse : Double) : List<Player> {
-        return listOf(MiserPlayer(startingPurse), MiddleMan(startingPurse), BigSpender(startingPurse))
+    private fun getPlayer(playerType: String,
+                          startingPurse : Double,
+                          startingBidRatio : Double = .25) : Player = when(playerType.toLowerCase()) {
+        "miserplayer" -> MiserPlayer(startingPurse)
+        "middleman" -> MiddleMan(startingPurse)
+        "bigspender" -> BigSpender(startingPurse)
+        "cheapskate" -> Cheapskate(startingPurse)
+        else -> AdaptivePlayer(startingPurse, startingBidRatio)
     }
 }
