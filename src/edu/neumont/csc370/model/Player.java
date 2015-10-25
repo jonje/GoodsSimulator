@@ -6,7 +6,7 @@ package edu.neumont.csc370.model;
 public abstract class Player {
 
     private static int _id = 0;
-    private double money;
+    protected double money;
     private double bettingRatio;
     private int id;
 

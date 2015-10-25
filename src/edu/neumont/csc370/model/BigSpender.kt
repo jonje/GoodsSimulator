@@ -6,9 +6,11 @@ package edu.neumont.csc370.model
 class BigSpender(money : Double) : Player(money, 1.0) {
 
     override fun getBet(minimumBet : Double, multiplier : Double) : Double {
-        val playerBet = this.money * this.bettingRatio
-        println("BigSpender betting $playerBet")
-        money -= playerBet
-        return playerBet
+        var ret = money * this.bettingRatio
+        if(ret < minimumBet)
+            ret = 0.0
+        println("BigSpender betting $ret")
+        this.money -= ret
+        return ret
     }
 }

@@ -7,9 +7,11 @@ package edu.neumont.csc370.model
 class MiddleMan(money : Double) : Player(money, 0.5) {
 
     override fun getBet(minimumBet : Double, multiplier : Double) : Double {
-        val ret = money * this.bettingRatio
+        var ret = money * this.bettingRatio
+        if(ret < minimumBet)
+            ret = 0.0
         println("MiddleMan betting $ret")
-        this.money *= this.bettingRatio
+        this.money -= ret
         return ret
     }
 }
