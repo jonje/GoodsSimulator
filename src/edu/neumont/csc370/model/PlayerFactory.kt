@@ -44,11 +44,8 @@ object PlayerFactory {
 
     private fun genPhaseTwoPlayers(startingAmount : Double) : List<List<Player>>{
         var playerTypes = listOf<String>();
-//        playerTypes += "miserplayer"
-//        playerTypes += "bigspender"
-//        playerTypes += "bigspender"
         playerTypes += "cheapskate"
-        playerTypes += "bigspender"
+        playerTypes += "cheapskate"
         playerTypes += "adaptiveplayer"
 
         var players = listOf<Player>()

@@ -3,6 +3,7 @@ package edu.neumont.csc370;
 import edu.neumont.csc370.model.Player;
 import edu.neumont.csc370.model.PlayerFactory;
 import edu.neumont.csc370.simulation.PhaseOneSimulation;
+import edu.neumont.csc370.simulation.PhaseThreeSimulation;
 import edu.neumont.csc370.simulation.PhaseTwoSimulation;
 import edu.neumont.csc370.simulation.SimulationConfigurationBundle;
 
@@ -16,7 +17,8 @@ public class Main {
     public static void main(String[] args) {
 
 //        phaseOneTrials();
-        phaseTwoTrials();
+//        phaseTwoTrials();
+        phaseThreeTrials();
     }
 
     private static void phaseOneTrials() {
@@ -36,7 +38,7 @@ public class Main {
                 PlayerFactory.INSTANCE.getPlayersForPhase("phase 2", 40.00).get(0);
 
         double multiplier = 4.00;
-        int iterations = 1;
+        int iterations = 5;
         double flatReward = 0;
         double percentageReward = .2;
         double minimumEntry = 5;
@@ -45,6 +47,25 @@ public class Main {
                 multiplier, iterations, flatReward, percentageReward, minimumEntry, depreciationAmount);
 
         PhaseTwoSimulation phaseTwoSimulation = new PhaseTwoSimulation(configuration);
+        LOG.printMainLevel("Start Simulation");
+        phaseTwoSimulation.run();
+        LOG.printMainLevel("End Simulation");
+    }
+
+    private static void phaseThreeTrials() {
+        List<? extends Player> playersForPhaseTwo =
+                PlayerFactory.INSTANCE.getPlayersForPhase("phase 2", 40.00).get(0);
+
+        double multiplier = 2.00;
+        int iterations = 5;
+        double flatReward = 0;
+        double percentageReward = .2;
+        double minimumEntry = 5;
+        double depreciationAmount = 20;
+        SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo,
+                multiplier, iterations, flatReward, percentageReward, minimumEntry, depreciationAmount);
+
+        PhaseThreeSimulation phaseTwoSimulation = new PhaseThreeSimulation(configuration);
         LOG.printMainLevel("Start Simulation");
         phaseTwoSimulation.run();
         LOG.printMainLevel("End Simulation");

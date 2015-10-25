@@ -36,7 +36,11 @@ public class AdaptivePlayer extends Player{
             currentBet = 0;
 
         this.setMoney(this.getMoney() - currentBet);
-        LOG.printPlayerLevel("AdaptivePlayer betting " + currentBet);
+        String betMessage = String.format("AdaptivePlayer betting %.2f, %%%.2f of his/her money",
+                currentBet, getBettingRatio() * 100);
+        LOG.printPlayerLevel(betMessage);
+        betLastRound = currentBet;
+
         return currentBet;
     }
 
@@ -44,6 +48,7 @@ public class AdaptivePlayer extends Player{
     public void earnWinnings(double winnings) {
         LOG.printPlayerLevel(String.format("%s just earned %.2f", this, winnings));
         this.setMoney(this.getMoney() + winnings);
+        winningsLastRound = winnings;
     }
 
     private void addPercentageToMultiplier(double percentageChange) {
