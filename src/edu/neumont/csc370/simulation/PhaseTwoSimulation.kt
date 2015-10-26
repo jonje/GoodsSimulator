@@ -43,7 +43,7 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
         val highestContributor = this.payPercentageRewards(playerBetPairs)
         this.payDistribution(playerBetPairs)
 
-        LOG.printSimLevel("Paying out flat reward to highest contribution (" + highestContributor + ")")
+        LOG.printSimLevel("Paying out flat reward to highest contribution ($highestContributor)")
         highestContributor.earnWinnings(configuration.flatReward)
 
         this.depreciatePlayers()
@@ -69,7 +69,7 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
         LOG.printSimLevel("Paying out equal shares of the pot")
         val lotteryPot = moneyPot * this.multiplier
         for ((player, bet) in playerBetPairs) {
-            player.earnWinnings(lotteryPot / playerBetPairs.size)
+            player.earnWinnings(lotteryPot / playerBetPairs.size())
         }
     }
 
@@ -86,7 +86,7 @@ class PhaseTwoSimulation(val configuration : SimulationConfigurationBundle)
 
         for ((player, bet) in playerBetPairs) {
             player.earnWinnings(bet * configuration.percentageReward)
-            player.earnWinnings(lotteryPot / playerBetPairs.size)
+            player.earnWinnings(lotteryPot / playerBetPairs.size())
 
             if (bet > highestContribution.second)
                 highestContribution = Pair(player, bet)
