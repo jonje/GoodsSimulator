@@ -45,12 +45,13 @@ class PhaseThreeSimulation(val configuration : SimulationConfigurationBundle)
         //I did the payout this way deliberately
         //Pros: The print output makes more sense
         //Cons: We loop through the playerBetPairs twice, and payPercentageRewards is doing two things (payout out + returning highestContributor)
-        val highestContributor = this.payPercentageRewards(playerBetPairs)
-        this.payDistribution(playerBetPairs)
+        if(playerBetPairs.size > 0) {
+            val highestContributor = this.payPercentageRewards(playerBetPairs)
+            this.payDistribution(playerBetPairs)
 
-        LOG.printSimLevel("Paying out flat reward to highest contribution $highestContributor")
-        highestContributor.earnWinnings(configuration.flatReward)
-
+            LOG.printSimLevel("Paying out flat reward to highest contribution $highestContributor")
+            highestContributor.earnWinnings(configuration.flatReward)
+        }
         this.depreciatePlayers()
     }
 

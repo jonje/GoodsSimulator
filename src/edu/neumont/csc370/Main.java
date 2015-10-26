@@ -42,7 +42,7 @@ public class Main {
         double flatReward = 0;
         double percentageReward = .2;
         double minimumEntry = 5;
-        double depreciationAmount = 20;
+        double depreciationAmount = 0;
         SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo,
                 multiplier, iterations, flatReward, percentageReward, minimumEntry, depreciationAmount);
 
@@ -57,11 +57,11 @@ public class Main {
                 PlayerFactory.INSTANCE$.getPlayersForPhase("phase 2", 40.00).get(0);
 
         double multiplier = 2.00;
-        int iterations = 5;
+        int iterations = 50;
         double flatReward = 0;
         double percentageReward = .2;
         double minimumEntry = 5;
-        double depreciationAmount = 20;
+        double depreciationAmount = 0;
         SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo,
                 multiplier, iterations, flatReward, percentageReward, minimumEntry, depreciationAmount);
 
