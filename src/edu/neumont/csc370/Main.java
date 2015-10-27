@@ -23,7 +23,7 @@ public class Main {
 
     private static void phaseOneTrials() {
         List<List<? extends Player>> playersForPhase
-                = PlayerFactory.INSTANCE$.getPlayersForPhase("phase 1", 20.00);
+                = PlayerFactory.INSTANCE.getPlayersForPhase("phase 1", 20.00);
 
         PhaseOneSimulation phaseOneSimulation;
         for ( List<? extends Player> players : playersForPhase ) {
@@ -35,7 +35,7 @@ public class Main {
 
     private static void phaseTwoTrials() {
         List<? extends Player> playersForPhaseTwo =
-                PlayerFactory.INSTANCE$.getPlayersForPhase("phase 2", 40.00).get(0);
+                PlayerFactory.INSTANCE.getPlayersForPhase("phase 2", 40.00).get(0);
 
         double multiplier = 4.00;
         int iterations = 5;
@@ -54,7 +54,7 @@ public class Main {
 
     private static void phaseThreeTrials() {
         List<? extends Player> playersForPhaseTwo =
-                PlayerFactory.INSTANCE$.getPlayersForPhase("phase 2", 40.00).get(0);
+                PlayerFactory.INSTANCE.getPlayersForPhase("phase 2", 40.00).get(0);
 
         double multiplier = 2.00;
         int iterations = 50;
@@ -65,9 +65,9 @@ public class Main {
         SimulationConfigurationBundle configuration = new SimulationConfigurationBundle(playersForPhaseTwo,
                 multiplier, iterations, flatReward, percentageReward, minimumEntry, depreciationAmount);
 
-        PhaseThreeSimulation phaseTwoSimulation = new PhaseThreeSimulation(configuration);
+        PhaseThreeSimulation phaseThreeSimulation = new PhaseThreeSimulation(configuration);
         LOG.printMainLevel("Start Simulation");
-        phaseTwoSimulation.run();
+        phaseThreeSimulation.run();
         LOG.printMainLevel("End Simulation");
     }
 }

@@ -75,7 +75,7 @@ class PhaseThreeSimulation(val configuration : SimulationConfigurationBundle)
         LOG.printSimLevel("Paying out equal shares of the pot")
         val lotteryPot = moneyPot * this.multiplier
         for ((player, bet) in playerBetPairs) {
-            player.earnWinnings(lotteryPot / playerBetPairs.size())
+            player.earnWinnings(lotteryPot / playerBetPairs.size)
         }
     }
 
@@ -92,7 +92,7 @@ class PhaseThreeSimulation(val configuration : SimulationConfigurationBundle)
 
         for ((player, bet) in playerBetPairs) {
             player.earnWinnings(bet * configuration.percentageReward)
-            player.earnWinnings(lotteryPot / playerBetPairs.size())
+            player.earnWinnings(lotteryPot / playerBetPairs.size)
 
             if (bet > highestContribution.second)
                 highestContribution = Pair(player, bet)

@@ -23,7 +23,7 @@ class PhaseOneSimulation(val players : List<Player>) : Simulation(players,  mult
         LOG.printSimLevel("Pot at $moneyPot, multiplying by $multiplier")
         moneyPot *= multiplier
         LOG.printSimLevel("Multiplied pot = $moneyPot")
-        gamePlayers.forEach { it.earnWinnings(moneyPot / gamePlayers.size()) }
+        gamePlayers.forEach { it.earnWinnings(moneyPot / gamePlayers.size) }
 
         LOG.printSimLevel("\n--------- Stats ---------")
         gamePlayers.forEach { LOG.printSimLevel("Player $it") }
